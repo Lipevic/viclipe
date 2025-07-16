@@ -1,10 +1,16 @@
+import { openDb } from '../database/configDB.js';
 import {Router} from "express";
 const router = Router(); 
 
 //get post put delete
 
-router.get("/atendimentos",(req, res)=>{
-    res.send("chegou, estamos listando todos os seus dados!")
+router.get("/atendimentos",async(req,res)=>{
+    const db = await openDb();
+    const usuarios = await db.all('SELECT id,nome FROM usuarios');
+    res.json(usuarios); // ← Retorna os usuários em formato JSON
+
+
+
 });
 
 router.post("/atendimentos",(req, res)=>{
