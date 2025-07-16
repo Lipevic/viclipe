@@ -1,28 +1,24 @@
-import { openDb } from '../database/configDB.js';
 import {Router} from "express";
+import { listarDados } from '../consultas/controllerusuarios.js';
 const router = Router(); 
 
 //get post put delete
 
-router.get("/atendimentos",async(req,res)=>{
-    const db = await openDb();
-    const usuarios = await db.all('SELECT id,nome FROM usuarios');
-    res.json(usuarios); // ← Retorna os usuários em formato JSON
-
-
-
+router.get("/usuarios",async (req,res)=>{
+    const usuarios = await listarDados();
+    res.json(usuarios);
 });
 
-router.post("/atendimentos",(req, res)=>{
+router.post("/usuarios",(req, res)=>{
     res.send("chegou, estamos cadastrando os seus dados!")
 });
 
-router.put("/atendimento/:id", (req, res)=>{
+router.put("/usuario/:id", (req, res)=>{
     const { id } =req.params;
     res.send(`chegou, estamos atualizando os seus dados ${id}!`);
 });
 
-router.delete("/atendimento", (req, res)=>{
+router.delete("/usuario", (req, res)=>{
     const { id } =req.params;
     res.send("chegou, estamos alterando ou deletando os dados selecionados" + id +"!");
 });

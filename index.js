@@ -7,7 +7,6 @@ import router from './routers/index.js';
 
 
 //openDb();
-
 router(app);
 
 app.listen(port,(error) =>{
