@@ -38,5 +38,12 @@ export async function deleteDataPessoa(id) {
 
     await db.run(`
        DELETE FROM pessoa WHERE id=?
-    `,[id]);
+        `,[id]);
 };
+
+
+export async function listarPessoas() {
+    const db = await openDb();
+    const pessoas = await db.all('SELECT * FROM pessoa');
+    return pessoas;
+}

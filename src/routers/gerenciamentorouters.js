@@ -1,13 +1,12 @@
 import {Router} from "express";
-import { listarDados } from '../consultas/controllerusuarios.js';
-import { createTablePessoa, deleteDataPessoa, insertDataPessoa, updateDataPessoa } from "../controllers/pessoa.js";
+import { createTablePessoa, deleteDataPessoa, insertDataPessoa, listarPessoas, updateDataPessoa } from "../controllers/pessoa.js";
 const router = Router(); 
 
 //get post put delete
 
 router.get("/usuarios",async (req,res)=>{
     createTablePessoa();
-    const pessoas = await listarDados();
+    const pessoas = await listarPessoas();
     res.json(pessoas);
 });
 
